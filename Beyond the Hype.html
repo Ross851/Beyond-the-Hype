@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beyond the Hype: How Low Code Becomes High Code - A comprehensive guide by Ross Hastie on enterprise Power Platform implementations">
+    <meta name="author" content="Ross Hastie">
+    <title>Beyond the Hype: How Low Code Becomes High Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 24pt;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            font-size: 18pt;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #34495e;
+            font-size: 14pt;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h4 {
+            color: #34495e;
+            font-size: 12pt;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        ul {
+            margin-bottom: 15px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .executive-summary {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #2c3e50;
+            margin-bottom: 30px;
+        }
+        .case-study {
+            background-color: #f5f5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .key-point {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .transition-text {
+            font-style: italic;
+            color: #555;
+            margin: 20px 0;
+        }
+        .author-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .author-header h2 {
+            margin-bottom: 5px;
+        }
+        .author-header p {
+            color: #666;
+            font-style: italic;
+        }
+        .footer-links {
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        .footer-links a {
+            color: #0077b5;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="author-header">
+    <h2>By Ross Hastie</h2>
+    <p>Power Platform Specialist | Architect-Level Solutions | Military Precision</p>
+</div>
+
+<h1>Beyond the Hype: How "Low Code" Becomes "High Code" as Project Complexity Grows</h1>
+
+<div class="executive-summary">
+<h2>Executive Summary</h2>
+<p>Microsoft Power Platform is marketed as a "low code" solution that accelerates development and empowers non-technical users. Whilst true for simple applications, enterprise implementations consistently evolve into professional development projects requiring advanced coding skills, ALM practices, and significant investment.</p>
+
+<p>This document examines how enterprise complexity transforms Power Platform from low-code to high-code development, revealing why organisations expecting quick wins often face unexpected costs and extended timelines. We explore practical strategies for managing this inevitable transition effectively.</p>
+
+<p><span class="key-point">Key recommendations include:</span> proactive architecture planning, realistic timeline setting, professional team composition, ongoing skills development, robust database design, and comprehensive governance frameworks as critical success factors for enterprise Power Platform implementations.</p>
+</div>
+
+<h2>Introduction: The Low-Code Promise vs Enterprise Reality</h2>
+<p>Power Platform delivers on its low-code promise for departmental solutions and simple workflows. However, enterprise requirements—particularly third-party integrations, legacy system connections, and creative platform pushing—consistently drive projects into professional development territory.</p>
+
+<p>The platform itself isn't the limitation; rather, it's the inherent complexity of enterprise requirements that transforms "low code" into "high code."</p>
+
+<p class="transition-text">So how do we define that complexity in terms of enterprise requirements? We can break it down into four key complexity drivers that typically push projects beyond citizen development capabilities.</p>
+
+<h2>Where Complexity Really Lives: Integration and Innovation</h2>
+
+<h3>The True Complexity Drivers</h3>
+<p>Enterprise Power Platform implementations become complex when they involve:</p>
+
+<h4>1. Third-Party System Integration</h4>
+<ul>
+    <li>OAuth 2.0 authentication with non-Microsoft systems</li>
+    <li>Legacy SOAP services requiring custom handling</li>
+    <li>Proprietary APIs with limited documentation</li>
+    <li>Managing rate limits across multiple platforms</li>
+</ul>
+
+<h4>2. Multi-System Data Orchestration</h4>
+<ul>
+    <li>SAP integration with specific protocols</li>
+    <li>Salesforce governor limits and bulk operations</li>
+    <li>Legacy mainframe connections</li>
+    <li>Real-time streaming data from IoT devices</li>
+</ul>
+
+<h4>3. Creative Platform Solutions</h4>
+<ul>
+    <li>Complex offline scenarios with conflict resolution</li>
+    <li>Sophisticated caching strategies</li>
+    <li>Custom UI components beyond standard controls</li>
+    <li>Real-time dashboards with thousands of data points</li>
+</ul>
+
+<h4>4. Enterprise Scale Requirements</h4>
+<ul>
+    <li>Thousands of concurrent users</li>
+    <li>Multi-region deployment</li>
+    <li>Regulatory compliance</li>
+    <li>Advanced security models</li>
+</ul>
+
+<p class="transition-text">While these are our key complexity drivers, we also have to consider how user requirements might bump up against platform constraints. For instance, a recent financial services project required us to re-architect our solution when we hit SharePoint's API throttling limits during peak trading hours.</p>
+
+<h3>Platform Constraints to Consider</h3>
+<p>Explicitly plan for platform constraints that impact enterprise implementations:</p>
+<ul>
+    <li>API throttling limits (600 requests/minute for SharePoint)</li>
+    <li>Power Automate run duration limits (30 days maximum)</li>
+    <li>Dataverse storage quotas and performance thresholds</li>
+    <li>Canvas app formula complexity limits</li>
+    <li>Custom connector timeout restrictions</li>
+</ul>
+
+<p><span class="key-point">Real-World Example:</span> A retail client's inventory system required monitoring 50,000 SKUs in real-time. We initially used SharePoint as the data source but hit API limits within the first week. The solution required a complete rebuild using Dataverse with proper indexing and caching strategies, adding 6 weeks to the project timeline.</p>
+
+<p class="transition-text">Understanding these constraints early is crucial, but equally important is recognising how existing development assets can dramatically impact project timelines and budgets.</p>
+
+<h2>The Development Efficiency Factor: Component Libraries</h2>
+<p>The speed advantage of low-code development depends heavily on existing assets. Consider that building a component library requires significant upfront investment—typically 3-6 months for a comprehensive enterprise library. However, this investment pays dividends across projects:</p>
+
+<h3>With Established Component Library:</h3>
+<ul>
+    <li>Standard integration patterns: 2-3 days</li>
+    <li>Complex forms: 1 week</li>
+    <li>Workflow automation: 3-5 days</li>
+</ul>
+
+<h3>Starting from Scratch:</h3>
+<ul>
+    <li>Same integration patterns: 2-3 weeks</li>
+    <li>Complex forms: 3-4 weeks</li>
+    <li>Workflow automation: 2-3 weeks</li>
+</ul>
+
+<p><span class="key-point">Example Scenario:</span> Our manufacturing client needed 15 similar forms across different production lines. With our component library, we delivered in 3 weeks. Without it, the same project would have taken 4 months, as each form required custom validation, error handling, and integration patterns.</p>
+
+<p class="transition-text">These efficiency gains are amplified when combined with modern ALM capabilities that have transformed Power Platform into a true professional development environment.</p>
+
+<h2>Modern ALM Capabilities: Professional Development for Power Platform</h2>
+<p>Recent platform enhancements have transformed Power Platform into a professional development environment:</p>
+<ul>
+    <li><strong>GitHub/Azure DevOps Integration:</strong> Full source control</li>
+    <li><strong>Automated Testing:</strong> Power Fx unit tests, flow integration tests</li>
+    <li><strong>CI/CD Pipelines:</strong> Automated cross-environment deployment</li>
+    <li><strong>Code Reviews:</strong> Pull request workflows</li>
+    <li><strong>Version Control:</strong> Branching strategies and rollback capabilities</li>
+</ul>
+
+<p>These capabilities enable enterprise-grade development practices but require professional development skills to implement effectively.</p>
+
+<p class="transition-text">Let's explore how real-world projects demonstrate this complexity evolution through concrete examples.</p>
+
+<h2>Case Studies: When Integration Complexity Drives High-Code Requirements</h2>
+
+<div class="case-study">
+<h3>Financial Services: Multi-System Trading Dashboard</h3>
+<p><strong>Initial Scope:</strong> Simple dashboard from CRM data</p>
+<p><strong>Actual Requirements:</strong></p>
+<ul>
+    <li>Salesforce API governor limits</li>
+    <li>SAP real-time integration</li>
+    <li>Bloomberg data feeds</li>
+    <li>Complex calculation engines</li>
+</ul>
+<p><strong>Platform Constraints Encountered:</strong></p>
+<ul>
+    <li>Power BI refresh limits conflicted with real-time trading needs</li>
+    <li>Canvas app formula complexity exceeded limits for derivative calculations</li>
+    <li>Custom connector timeout issues with Bloomberg API</li>
+</ul>
+<p><strong>Result:</strong> 6-month project requiring custom connectors, Azure Functions, and professional architects</p>
+</div>
+
+<div class="case-study">
+<h3>Manufacturing: Real-Time Production Monitoring</h3>
+<p><strong>Vision:</strong> Basic Power BI embedded in Power Apps</p>
+<p><strong>Reality:</strong></p>
+<ul>
+    <li>IoT sensor integration (thousands of data points)</li>
+    <li>Legacy SCADA systems</li>
+    <li>Offline shop floor capability</li>
+    <li>Custom visualisations</li>
+</ul>
+<p><strong>Platform Constraints Encountered:</strong></p>
+<ul>
+    <li>Dataverse row limits for high-frequency sensor data</li>
+    <li>Power Automate couldn't handle the volume of IoT events</li>
+    <li>Canvas app performance issues with large datasets</li>
+</ul>
+<p><strong>Solution:</strong> PCF controls, microservices architecture, 8-month timeline</p>
+</div>
+
+<p class="transition-text">These case studies highlight how complexity drives costs far beyond initial estimates. Let's examine the real economics of enterprise Power Platform implementations.</p>
+
+<h2>The Real Economics of Enterprise Power Platform</h2>
+
+<h3>Licensing Structure (2024/2025)</h3>
+<ul>
+    <li>Power Apps per app: £4/user/month</li>
+    <li>Power Apps per user: £15/user/month</li>
+    <li>Dataverse: £15/user/month additional</li>
+    <li>Power Pages: Capacity-based pricing</li>
+</ul>
+
+<p><span class="key-point">Budget Impact:</span> Licensing costs can quickly exceed initial estimates, particularly when using Dataverse and Power Pages for large user bases. What starts as a £2,000/month budget can escalate to £15,000/month at enterprise scale.</p>
+
+<p><strong>Example:</strong> 500 users with Dataverse = £15,000/month (£180,000/year)</p>
+
+<h3>Development Costs: Planning vs Reality</h3>
+
+<h4>Well-Planned Enterprise Project:</h4>
+<ul>
+    <li>Discovery and architecture: 2-3 weeks</li>
+    <li>Component library development: 1-2 months (if needed)</li>
+    <li>Development with libraries: 3-6 months</li>
+    <li>Testing and deployment: 1 month</li>
+    <li>Total: £350,000-600,000</li>
+</ul>
+
+<h4>Poorly Scoped "Quick Win":</h4>
+<ul>
+    <li>Initial estimate: 2 months, £150,000</li>
+    <li>Actual delivery: 8-12 months, £700,000+</li>
+    <li>Emergency fixes and rework included</li>
+</ul>
+
+<p class="transition-text">Understanding these costs is crucial, but equally important is recognising how technical progression naturally evolves from citizen to professional development.</p>
+
+<h2>Technical Progression: When Low-Code Becomes High-Code</h2>
+
+<h3>Stage 1: True Low-Code (Months 1-2)</h3>
+<ul>
+    <li>Simple canvas apps</li>
+    <li>Basic Power Automate flows</li>
+    <li>Standard connectors</li>
+    <li>SharePoint data sources</li>
+</ul>
+<p><strong>Required Skills:</strong> Basic training only, no certifications needed</p>
+
+<h3>Stage 2: Hybrid Development (Months 3-6)</h3>
+<ul>
+    <li>Advanced Power Fx formulas</li>
+    <li>Custom connectors</li>
+    <li>Dataverse implementation</li>
+    <li>Complex workflows</li>
+</ul>
+<p><strong>Required Skills:</strong> PL-200 certification recommended, basic JavaScript knowledge, API interaction and JSON handling skills</p>
+
+<h3>Stage 3: Professional Development (Months 6+)</h3>
+<ul>
+    <li>PCF controls (React/TypeScript)</li>
+    <li>Azure Functions (C#)</li>
+    <li>Microservices architecture</li>
+    <li>Enterprise ALM</li>
+</ul>
+
+<p><strong>Required Skills:</strong></p>
+<ul>
+    <li><strong>Microsoft Certifications:</strong> PL-400 (Developer), PL-600 (Architect), AZ-204 (Azure Developer)</li>
+    <li><strong>Frontend Skills:</strong> React, TypeScript, Fluent UI, npm ecosystem</li>
+    <li><strong>Backend & Integration:</strong> Azure Functions (C#), REST API design, OAuth 2.0, JWT security</li>
+    <li><strong>DevOps & ALM:</strong> Git, Azure DevOps pipelines, automated testing frameworks</li>
+    <li><strong>Performance Engineering:</strong> Query optimisation, caching mechanisms, Dataverse indexing strategies</li>
+</ul>
+
+<p class="transition-text">As projects progress through these stages, database design becomes increasingly critical—something often overlooked in early stages.</p>
+
+<h2>Database Design: The Hidden Complexity Driver</h2>
+
+<p>When citizen developers start their Power Platform journey, database design is rarely a consideration. However, as projects scale to mid and high-end enterprise systems, database architecture becomes fundamental to success.</p>
+
+<h3>Evolution of Database Complexity:</h3>
+
+<h4>Stage 1: Simple Lists (Citizen Developer Level)</h4>
+<ul>
+    <li>SharePoint lists or Excel files</li>
+    <li>No relationships</li>
+    <li>Basic filtering only</li>
+    <li>Limited to 5,000 items</li>
+</ul>
+
+<h4>Stage 2: Basic Dataverse (Power User Level)</h4>
+<ul>
+    <li>Simple entity relationships</li>
+    <li>Basic security roles</li>
+    <li>Standard indexes</li>
+    <li>Up to 100,000 records</li>
+</ul>
+
+<h4>Stage 3: Enterprise Database Design (Professional Level)</h4>
+<ul>
+    <li>Complex ERD with multiple relationships</li>
+    <li>Optimised indexes and partitioning</li>
+    <li>Row-level security with business units</li>
+    <li>Millions of records with sub-second query performance</li>
+</ul>
+
+<h3>Common Database Design Failures:</h3>
+<ul>
+    <li><strong>No normalisation:</strong> Data redundancy leading to inconsistencies</li>
+    <li><strong>Missing indexes:</strong> Query timeouts with large datasets</li>
+    <li><strong>Poor relationship design:</strong> Cascade delete issues, orphaned records</li>
+    <li><strong>Inadequate security model:</strong> GDPR violations, data breaches</li>
+</ul>
+
+<p><span class="key-point">Real Impact Example:</span> A healthcare client's patient management system suffered a data breach due to poor database design. The citizen-developed solution stored sensitive data in SharePoint lists without proper security. Remediation cost £450,000, including GDPR fines and complete database restructuring.</p>
+
+<h3>Professional Database Design Requirements:</h3>
+<ul>
+    <li>Comprehensive ERD documentation</li>
+    <li>Data retention policies</li>
+    <li>Audit trail implementation</li>
+    <li>Performance baseline testing</li>
+    <li>Security penetration testing</li>
+    <li>GDPR compliance verification</li>
+</ul>
+
+<p class="transition-text">With all these technical considerations in mind, let's explore the gap between citizen and professional development approaches.</p>
+
+<h2>The Reality Gap: How Citizen Development Evolves to Professional Development</h2>
+
+<table>
+<thead>
+    <tr>
+        <th>Scenario/Feature</th>
+        <th>Low-Code ("Citizen Dev")</th>
+        <th>Professional Development Reality</th>
+        <th>Key Considerations</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Canvas App UI Design</td>
+        <td>Drag-and-drop, basic Power Fx</td>
+        <td>Custom CSS, Fluent UI components, responsive design</td>
+        <td>Accessibility standards require front-end expertise</td>
+    </tr>
+    <tr>
+        <td>Data Operations</td>
+        <td>Simple Patch/SubmitForm</td>
+        <td>Complex validation, bulk operations, transaction handling</td>
+        <td>Performance optimisation crucial at scale</td>
+    </tr>
+    <tr>
+        <td>API Integration</td>
+        <td>Standard connectors only</td>
+        <td>Custom connectors, OAuth flows, error handling</td>
+        <td>Enterprise APIs need professional integration patterns</td>
+    </tr>
+    <tr>
+        <td>Database Design</td>
+        <td>SharePoint lists, flat structure</td>
+        <td>Normalised Dataverse, complex relationships, ERDs</td>
+        <td>Poor design leads to security breaches and performance issues</td>
+    </tr>
+    <tr>
+        <td>Workflow Automation</td>
+        <td>Basic Power Automate flows</td>
+        <td>Child flows, parallel processing, retry logic</td>
+        <td>Critical processes require robust exception handling</td>
+    </tr>
+    <tr>
+        <td>Security Model</td>
+        <td>SharePoint permissions</td>
+        <td>Dataverse row-level security, business units</td>
+        <td>Enterprise security can't rely on front-end alone</td>
+    </tr>
+    <tr>
+        <td>Authentication</td>
+        <td>Basic Azure AD</td>
+        <td>B2B/B2C, conditional access, MFA</td>
+        <td>Complex identity scenarios need architecture</td>
+    </tr>
+    <tr>
+        <td>Deployment</td>
+        <td>Manual publish</td>
+        <td>CI/CD pipelines, automated testing</td>
+        <td>Enterprise ALM prevents production failures</td>
+    </tr>
+    <tr>
+        <td>Performance</td>
+        <td>Unoptimised queries</td>
+        <td>Delegation, caching strategies</td>
+        <td>Large datasets require careful planning</td>
+    </tr>
+</tbody>
+</table>
+
+<p class="transition-text">These differences in approach directly translate to tangible business impacts. Let's examine the best practices that separate citizen from professional development.</p>
+
+<h2>Technical Best Practices: The Professional Development Difference</h2>
+
+<table>
+<thead>
+    <tr>
+        <th>Category</th>
+        <th>Citizen Developer Approach</th>
+        <th>Professional Developer Approach</th>
+        <th>Impact of the Difference</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Naming Conventions</td>
+        <td>Default names (Button1, Label2)</td>
+        <td>Semantic naming (btn_Submit, lbl_CustomerName)</td>
+        <td>Reduced debugging time by 60%, faster issue resolution</td>
+    </tr>
+    <tr>
+        <td>Error Handling</td>
+        <td>Minimal or none</td>
+        <td>Try-catch patterns, user feedback</td>
+        <td>90% reduction in production failures</td>
+    </tr>
+    <tr>
+        <td>Source Control</td>
+        <td>Manual backups</td>
+        <td>Git repositories, branching strategies</td>
+        <td>80% faster deployment cycles</td>
+    </tr>
+    <tr>
+        <td>Database Design</td>
+        <td>Ad-hoc structure, no documentation</td>
+        <td>Comprehensive ERDs, normalisation, security design</td>
+        <td>Prevents data breaches, ensures GDPR compliance</td>
+    </tr>
+    <tr>
+        <td>Testing</td>
+        <td>Manual testing only</td>
+        <td>Automated testing, performance benchmarks</td>
+        <td>75% fewer post-deployment bugs</td>
+    </tr>
+    <tr>
+        <td>Performance</td>
+        <td>Ignore delegation warnings</td>
+        <td>Optimised queries, caching strategies</td>
+        <td>50% lower infrastructure costs</td>
+    </tr>
+    <tr>
+        <td>Documentation</td>
+        <td>Rarely documented</td>
+        <td>Technical specs, ERDs, API docs</td>
+        <td>70% faster team onboarding</td>
+    </tr>
+    <tr>
+        <td>Security</td>
+        <td>Front-end validation only</td>
+        <td>Server-side enforcement, penetration testing</td>
+        <td>Reduced breach risk, compliance maintained</td>
+    </tr>
+</tbody>
+</table>
+
+<p class="transition-text">Understanding these differences helps organisations plan for success. Let's consolidate our insights into strategic recommendations.</p>
+
+<h2>Strategic Recommendations</h2>
+
+<h3>1. Acknowledge Reality Early</h3>
+<ul>
+    <li>Conduct thorough discovery</li>
+    <li>Identify integration complexity upfront</li>
+    <li>Plan for professional development needs</li>
+    <li>Set realistic timelines</li>
+    <li>Budget for component library development</li>
+</ul>
+
+<h3>2. Invest in Architecture and Database Design</h3>
+<ul>
+    <li>Engage solution architects from day one</li>
+    <li>Design for scale and integration</li>
+    <li>Create comprehensive ERDs before development</li>
+    <li>Plan component libraries</li>
+    <li>Establish ALM practices early</li>
+    <li>Implement security-by-design principles</li>
+</ul>
+
+<h3>3. Build the Right Team</h3>
+<ul>
+    <li>Mix citizen and professional developers</li>
+    <li>Ensure PL-400/PL-600 expertise</li>
+    <li>Include database architects</li>
+    <li>Add integration specialists</li>
+    <li>Consider platform limits experts</li>
+</ul>
+
+<h3>4. Implement Governance Proactively</h3>
+<ul>
+    <li>Establish Centre of Excellence</li>
+    <li>Define complexity boundaries</li>
+    <li>Monitor technical debt</li>
+    <li>Control platform sprawl</li>
+    <li>Enforce database design standards</li>
+    <li>Regular security audits</li>
+</ul>
+
+<h3>5. Enable Continuous Learning and Improvement</h3>
+<ul>
+    <li>Provide ongoing training for citizen developers</li>
+    <li>Establish mentorship programmes</li>
+    <li>Create clear learning paths (PL-100 to PL-600)</li>
+    <li>Regular platform update training</li>
+    <li>Continuous process reviews</li>
+</ul>
+
+<h2>Conclusion</h2>
+
+<p>Power Platform offers tremendous value for enterprise organisations, but success requires recognising that complex requirements inevitably push low-code solutions into high-code territory. This isn't a platform limitation—it's the nature of enterprise complexity.</p>
+
+<p>Organisations that acknowledge this reality early, invest in proper architecture and database design, and build capable teams will deliver successful solutions. Those expecting magic from marketing terminology will face costly surprises.</p>
+
+<p><span class="key-point">Remember:</span> A project can always evolve. While your initial deployment may not be complex, as the process evolves you should regularly review what level of complexity you're dealing with. Continuous improvement works brilliantly with Power Platform's ALM capabilities, but only if you design your systems from the start to be expanded as the business evolves.</p>
+
+<p><span class="key-point">For developers and architects:</span> Proactively identifying and clearly communicating complexity prevents significant rework, budget overruns, and project delays. Your early engagement and transparency on technical risks directly determine project success. Every week of delayed recognition typically translates to months of additional development and significant budget overruns.</p>
+
+<p>Success lies not in avoiding complexity, but in identifying it early, planning accordingly, and designing for evolution. With proper expectations, governance, and continuous team development, Power Platform can deliver significant value even as projects naturally evolve from low-code to high-code development.</p>
+
+<div class="footer">
+    <p><strong>About the Author:</strong> Ross Hastie is a Power Platform Specialist who transforms enterprise ambitions into working solutions. A 22-year British Army veteran turned tech innovator, he delivers architect-level systems that navigate the reality between low-code promises and high-code necessities. Currently architecting full-stack solutions for Telana (formerly Sundown Solutions), Ross specialises in complex integrations, enterprise-scale implementations, and setting realistic expectations for Power Platform projects.</p>
+
+    <p><strong>Connect with Ross:</strong></p>
+    <div class="footer-links">
+        <a href="https://ross851.github.io/Bio/">📄 View Full Bio</a>
+        <a href="https://www.linkedin.com/in/ross-hastie-286a75316">🔗 Connect on LinkedIn</a>
+        <a href="https://telana.com/">🏢 Telana</a>
+        <a href="mailto:rhastie@telana.com">✉️ Email for Consultations</a>
+    </div>
+
+    <p style="margin-top: 30px; color: #666;"><em>Published on GitHub Pages • Last updated: May 13, 2025</em></p>
+</div>
+
+</body>
+</html>
